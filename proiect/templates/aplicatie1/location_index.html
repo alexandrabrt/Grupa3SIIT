@@ -17,7 +17,7 @@
     <tr>
         <td>{{ forloop.counter }}</td>
         <td>{{ item.city }}</td>
-        <td>{{ item.country }}</td>
+        <td>{{ item.country|upper }}</td>
     </tr>
     {% endfor %}
     </tbody>
