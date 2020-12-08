@@ -5,6 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<a href="{% url 'aplicatie1:adaugare' %}">Adaugare</a>
+<table>
+    <thead>
+        <th>Index</th>
+        <th>City</th>
+        <th>Country</th>
+    </thead>
+    <tbody>
+    {% for item in all_locations %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.country }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 </body>
 </html>
