@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body class="about-us">
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent nav-down" color-on-scroll="200">
+    <div class="container">
+        <div class="navbar-translate">
+            <div class="navbar-header">
+
+            </div>
+            <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse"
+                    data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" style="color:black">
+                        Location
+                    </a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a>{{ request.user.username }}</a>
+                    </li>
+                {% endif %}
+                {% if request.user.is_authenticated == False %}
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="nav-link">
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
+                {% if request.user.is_authenticated == True %}
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link">
+                            Logout
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page-header page-header-small">
+    <div class="filter filter-danger"></div>
+    <div class="content-center">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

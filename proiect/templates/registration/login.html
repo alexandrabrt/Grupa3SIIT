@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <br>
+    <div class="row">
+        <form class="register-form" method="POST">
+            {% csrf_token %}
+            <label class="control-label">Username</label>
+            <input type="text" name="username" class="form-control">
+
+            <label class="control-label">Password</label>
+            <input type="password" name="password" class="form-control">
+            <button type="submit" class="btn btn-blue btn-fill btn-save" onclick="{% url 'login' %}">Login</button>
+        </form>
+    </div>
+{% endblock %}
