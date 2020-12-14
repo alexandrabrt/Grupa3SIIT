@@ -5,7 +5,7 @@ from django.shortcuts import render
 # CreateView => Adaugare date
 # UpdateView => Modificare date
 # DeleteView => Stergere date
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from aplicatie1.models import Location
 from django.urls import reverse
@@ -18,6 +18,15 @@ class HomeIndex(ListView):
 
 
 class CreateIndexView(CreateView):
+    model = Location
+    fields = ['city', 'country']
+    template_name = 'aplicatie1/location_form.html'
+
+    def get_success_url(self):
+        return reverse('aplicatie1:home')
+
+
+class UpdateLocationView(UpdateView):
     model = Location
     fields = ['city', 'country']
     template_name = 'aplicatie1/location_form.html'
