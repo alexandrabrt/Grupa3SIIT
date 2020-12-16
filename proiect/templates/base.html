@@ -31,8 +31,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link" style="color:black">
+                    <a href="{% url 'aplicatie1:home' %}" class="nav-link" style="color:black">
                         Location
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'aplicatie2:home' %}" class="nav-link" style="color:black">
+                        Companies
                     </a>
                 </li>
                 {% if request.user.is_authenticated %}
