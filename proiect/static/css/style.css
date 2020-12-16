@@ -1,0 +1,12 @@
+.header_style {
+    font-size: 20px;
+    color: brown;
+}
+
+#id_tabel {
+    font-size: 30px;
+    /*padding: 10px;*/
+    /*padding: 1px 1px 1px 1px;*/
+    /*padding-top: 1px;*/
+    /*padding-bottom: 10px;*/
+}
