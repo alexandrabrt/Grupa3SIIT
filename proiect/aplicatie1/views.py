@@ -8,6 +8,7 @@ from django.shortcuts import render
 # DeleteView => Stergere date
 from django.views.generic import ListView, CreateView, UpdateView
 
+from aplicatie1.forms import LocationForm
 from aplicatie1.models import Location
 from django.urls import reverse
 
@@ -20,8 +21,14 @@ class HomeIndex(LoginRequiredMixin, ListView):
 
 class CreateIndexView(LoginRequiredMixin, CreateView):
     model = Location
-    fields = ['city', 'country']
+    # fields = ['city', 'country']
+    form_class = LocationForm
     template_name = 'aplicatie1/location_form.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateIndexView, self).get_form_kwargs()
+        kwargs.update({'pk': None})
+        return kwargs
 
     def get_success_url(self):
         return reverse('aplicatie1:home')
@@ -29,8 +36,14 @@ class CreateIndexView(LoginRequiredMixin, CreateView):
 
 class UpdateLocationView(LoginRequiredMixin, UpdateView):
     model = Location
-    fields = ['city', 'country']
+    # fields = ['city', 'country']
+    form_class = LocationForm
     template_name = 'aplicatie1/location_form.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateLocationView, self).get_form_kwargs()
+        kwargs.update({'pk': self.kwargs['pk']})
+        return kwargs
 
     def get_success_url(self):
         return reverse('aplicatie1:home')
