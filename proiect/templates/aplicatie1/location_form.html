@@ -4,11 +4,20 @@
     <br>
     <form method="POST">
         {% csrf_token %}
-        {% for field in form %}
-            {{ field.label }}
-            {{ field }}
-            {{ field.errors }}
-        {% endfor %}
-        <button type="submit" class="btn btn-success">Salveaza</button>
+          <div class="box">
+            <div class="field">
+                {% for field in form %}
+                    <div class="row">
+                        <label class="col-md-2  text-left" style="padding-top: 15px;">{{ field.label }}</label>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-default btn-round">Salveaza</button>
     </form>
 {% endblock %}
