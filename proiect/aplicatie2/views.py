@@ -16,7 +16,13 @@ from aplicatie2.models import Companies
 class HomeIndex(LoginRequiredMixin, ListView):
     model = Companies
     template_name = 'aplicatie2/companies_index.html'
-    context_object_name = 'all_companies'
+    # context_object_name = 'all_companies'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(HomeIndex, self).get_context_data(**kwargs)
+        print(self.request.user.userextend.customer.id)
+        context['all_companies'] = Companies.objects.filter(id=self.request.user.userextend.customer.id)
+        return context
 
 
 class CreateCompaniesView(LoginRequiredMixin, CreateView):

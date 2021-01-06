@@ -12,12 +12,13 @@ from django.urls import reverse
 from django.views.generic import UpdateView, CreateView
 
 from userprofile.forms import NewAccountForm
+from userprofile.models import UserExtend
 
 
 class UpdateProfile(LoginRequiredMixin, UpdateView):
     # fields = '__all__'
     form_class = NewAccountForm
-    model = User
+    model = UserExtend
     template_name = 'aplicatie1/location_form.html'
 
     def get_queryset(self):
@@ -37,7 +38,7 @@ punctuation = '!$%?#@'
 
 class CreateNewUser(CreateView):
     form_class = NewAccountForm
-    model = User
+    model = UserExtend
     template_name = 'aplicatie1/location_form.html'
 
     def get_form_kwargs(self):
