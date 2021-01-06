@@ -23,10 +23,11 @@ class NewAccountForm(forms.ModelForm):
         super(NewAccountForm, self).__init__(*args, **kwargs)
         self.pk = pk
         self.state = state
-        print(UserExtend.objects.get(id=self.pk).customer.id)
-        self.fields['customer'] = ModelChoiceField(queryset=Companies.objects.filter(id=UserExtend.objects.get(id=self.pk).customer.id))
-        self.initial['customer'] = Companies.objects.get(id=UserExtend.objects.get(id=self.pk).customer.id)
-        self.fields['customer'].widget.attrs['class'] = 'form-control'
+        if self.state != 'create':
+            print(UserExtend.objects.get(id=self.pk).customer.id)
+            self.fields['customer'] = ModelChoiceField(queryset=Companies.objects.filter(id=UserExtend.objects.get(id=self.pk).customer.id))
+            self.initial['customer'] = Companies.objects.get(id=UserExtend.objects.get(id=self.pk).customer.id)
+            self.fields['customer'].widget.attrs['class'] = 'form-control'
 
     def clean(self):
         cleaned_data = self.cleaned_data

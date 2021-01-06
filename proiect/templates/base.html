@@ -25,11 +25,22 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                {% if ready_to_work %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Home
+                    <a class="nav-link" href="{% url 'userprofile:pontaj' %}">
+                        Pontaj Nou
+
                     </a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userprofile:stop' request.user.id %}">
+                        Ai pontat deja
+                    </a>
+                </li>
+                {% endif %}
+                {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'aplicatie1:home' %}" class="nav-link" style="color:black">
                         Location

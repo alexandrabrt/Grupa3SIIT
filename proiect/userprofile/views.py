@@ -1,10 +1,13 @@
 import random
 import string
-
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render
+from userprofile.models import Pontaj
+import datetime
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 from django.template.loader import render_to_string
@@ -70,3 +73,15 @@ class CreateNewUser(CreateView):
         except Exception:
             pass
         return reverse('login')
+
+@login_required
+def newPontaj(request):
+    if Pontaj.objects.filter(user_id=request.user.id, end_date=None).exists() is False:
+        Pontaj.objects.create(user_id=request.user.id, start_date=datetime.datetime.now())
+    return redirect('aplicatie1:home')
+
+@login_required
+def stopPontaj(request, pk):
+    if Pontaj.objects.filter(user_id=request.user.id, end_date=None).exists() is True:
+        Pontaj.objects.filter(end_date=None, user_id=request.user.id).update(end_date=datetime.datetime.now())
+    return redirect('aplicatie1:home')
