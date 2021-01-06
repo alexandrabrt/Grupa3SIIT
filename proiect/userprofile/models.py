@@ -23,3 +23,15 @@ class Logs(models.Model):
     customer = models.ForeignKey(Companies, on_delete=models.CASCADE)
     action = models.CharField('Action', max_length=10, choices=action_choice)
     url = models.CharField('URL', max_length=100)
+    departament = models.CharField('Departament', max_length=100)
+    rol = models.CharField('Rol', max_length=100)
+    zile_concediu = models.CharField('Zile Concediu', max_length=100)
+
+
+class Pontaj(models.Model):
+
+    user = models.ForeignKey(UserExtend, on_delete=models.CASCADE)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+
