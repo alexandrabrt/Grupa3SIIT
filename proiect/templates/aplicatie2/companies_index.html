@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% load static %}
+    {% load stergere_puncte %}
     <br>
     <br>
     <a href="{% url 'aplicatie2:adaugare' %}" class="header_style">Adaugare</a>
@@ -18,7 +20,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.website|upper }}</td>
+                <td>{{ item.website|stergere_puncte:'_'|upper }}</td>
                 <td>{{ item.type }}</td>
                 <td>{{ item.active }}</td>
                 <td>{{ item.location.city }} {{ item.location.country }}</td>
@@ -27,4 +29,5 @@
         {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}
