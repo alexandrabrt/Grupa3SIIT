@@ -11,6 +11,7 @@
             <label class="control-label">Password</label>
             <input type="password" name="password" class="form-control">
             <button type="submit" class="btn btn-blue btn-fill btn-save" onclick="{% url 'login' %}">Login</button>
+            <a href="{% url 'password_reset' %}" class="btn btn-danger">Vrei sa iti resetezi parola?</a>
         </form>
     </div>
 {% endblock %}
