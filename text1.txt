@@ -1,0 +1,37 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+r = requests.get("https://www.emag.ro/cutie-50-masti-faciale-de-unica-folosinta-sigilate-3-straturi-albastru-d9q76mmbm/pd/D9Q76MMBM/?X-Search-Id=abea50172aa565b87e4d&X-Product-Id=58887472&X-Search-Page=1&X-Search-Position=0&X-Section=search&X-MB=0&X-Search-Action=view")
+
+link = BeautifulSoup(r.text, 'html.parser')
+data_values={'marime':[],'valoare':[]}
+title = link.find_all('table', attrs={'class': 'table table-striped product-page-specifications'})
+#print(title)
+for x in title:
+    #a = x.find_all('td')[0].get_text()
+    #b = x.find_all('td')[1].get_text()
+    print(x.find_all('td'))
+    all_values = x.find_all('td')
+
+all_values2 = all_values[0::2]
+    
+for i in all_values2:
+    print(i.get_text())
+
+all_values2 = all_values[1::2]
+
+for i in all_values2:
+    print(i.get_text())
+    #for i in x.find_all('tr'):
+    #    print(i)
+    #for i in x.find_all('tr'):
+    #    data_values['marime'].append(i)
+    #data_values['valoare'].append(b)
+#l2 = [ all_values[i] for i in all_values if int(i) % 2 == 0]
+
+print(data_values)
+
+
+df = pd.DataFrame(data_values,columns = [' status','produs','pret'])
+df.to_excel('C:/Users/george.cergau/Desktop/etti-fac.xls')
