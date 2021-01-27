@@ -40,5 +40,10 @@ class UpdateCompaniesView(LoginRequiredMixin, UpdateView):
     form_class = CompaniesForm
     template_name = 'aplicatie1/location_form.html'
 
+    def get_queryset(self):
+        print(self.request.GET.get('idlocatie'))
+        print(self.request.path)
+        return Companies.objects.filter(id=self.kwargs['pk'])
+
     def get_success_url(self):
         return reverse('aplicatie2:modificare', kwargs={'pk': self.kwargs['pk']})

@@ -24,7 +24,7 @@
                 <td>{{ item.type }}</td>
                 <td>{{ item.active }}</td>
                 <td>{{ item.location.city }} {{ item.location.country }}</td>
-                <td><a href="{% url 'aplicatie2:modificare' item.id %}">Edit</a></td>
+                <td><a href="{% url 'aplicatie2:modificare' item.id %}?idlocatie={{ item.location.id }}">Edit</a></td>
             </tr>
         {% endfor %}
         </tbody>

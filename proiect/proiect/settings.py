@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'aplicatie1',
     'aplicatie2',
     'userprofile',
+    'myapi.apps.MyapiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
